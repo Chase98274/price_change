@@ -7,8 +7,24 @@ from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import mysql.connector
 
-models = ["bbm450an", "bbm450w", "bvf290w", "NEX110DFSL", "dfhfshkjhfsdkjhfsdjk", "WAX32M41AU"]
+
+
+
+
+models = ["bbm450an", "bbm450w", "bvf290w", "NEX110DFSL", "WAX32M41AU"]
 na = []
+
+while True:
+  model_input = input("Enter model code: ")
+
+  if model_input != "exit":
+    models.append(model_input)
+  else:
+    break
+  
+  
+  
+
 
 def write_data(code, price):
   try:
