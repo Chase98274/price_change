@@ -1,4 +1,5 @@
 import time
+import tkinter.messagebox
 import pandas as pd
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -8,11 +9,22 @@ from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import mysql.connector
 
-
-
-
-models = ["bbm450an", "bbm450w", "bvf290w", "NEX110DFSL", "WAX32M41AU", "ojgudhfggf", "bbm450x"]
+models = []
 na = []
+
+
+while True:
+  mode = input("Enter model code or type 'exit': ").lower().strip()
+
+  if mode == "exit":
+    break
+  
+  elif mode != "exit":
+    models.append(mode)
+  
+  else:
+    tkinter.messagebox.showerror("Error", "That was not a good option!")
+
  
   
 
@@ -61,12 +73,11 @@ def price_product():
       searchElement.send_keys(Keys.ENTER)
 
       model = driver.find_element(By.CSS_SELECTOR, "p.style-number").text
-      print("Text is: " + model)
-
       price = driver.find_element(By.CSS_SELECTOR, "p.price").text
-      print("Price: " + price)
+      
+      print("{}: {}".format(model, price))
 
-      write_data(model, price)
+      # write_data(model, price)
 
       driver.find_element(By.ID, "searchterm").clear()
     
