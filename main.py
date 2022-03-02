@@ -55,7 +55,7 @@ def write_data(code, price):
           print("MySQL connection is closed")
 
 driver = webdriver.Chrome(
-executable_path='C:\\Users\\chase\\Documents\\price_change\\chromedriver.exe')
+executable_path='C:\\Users\\chase\\OneDrive\\Documents\\Coding\\price_change\\chromedriver.exe')
 driver.get('https://www.100percent.co.nz/')
 
 
@@ -82,11 +82,12 @@ def price_product():
       driver.find_element(By.ID, "searchterm").clear()
     
     except:
+      models.remove(item)
       driver.find_element(By.ID, "searchterm").clear()
-      print("That was a bad option!")
       na.append(item)
 
 price_product()
+
 
 for item in na:
   print("{} was unavailable".format(item))
