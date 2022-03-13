@@ -1,10 +1,6 @@
-import time
-import pandas as pd
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import mysql.connector
 
@@ -42,12 +38,14 @@ def write_data(code, price):
           connection.close()
           print("MySQL connection is closed")
 
-driver = webdriver.Chrome(
-executable_path='C:\\Users\\chase\\Documents\\price_change\\chromedriver.exe')
-driver.get('https://www.100percent.co.nz/')
+
 
 
 def price_product():
+
+  driver = webdriver.Chrome(
+  executable_path='C:\\Users\\chase\\OneDrive\\Documents\\Coding\\price_change\\chromedriver.exe')
+  driver.get('https://www.100percent.co.nz/')
 
   for item in models:
 
@@ -79,5 +77,3 @@ price_product()
 
 for item in na:
   print("{} was unavailable".format(item))
-
-driver.close()
